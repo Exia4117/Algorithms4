@@ -10,6 +10,7 @@ public class ex7 {
             double x = 25.0 / t + t;
             t = (25.0 / t + t) / 2.0;
         }
+        //5.00002
         StdOut.printf("%.5f\n", t);
         int sum = 0;
         for (int i = 1; i < 1000;i++){
@@ -18,6 +19,7 @@ public class ex7 {
             }
         }
         StdOut.println(sum);
+        //499500
         sum = 0;
         for(int i = 1;i<1000;i*=2){
             for(int j = 0;j<1000;j++){
@@ -25,5 +27,6 @@ public class ex7 {
             }
         }
         StdOut.println(sum);
+        //10000
     }
 }
