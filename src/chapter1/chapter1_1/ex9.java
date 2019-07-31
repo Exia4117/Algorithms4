@@ -1,6 +1,7 @@
 package chapter1.chapter1_1;
 
 public class ex9 {
+    //编写一段代码，将一个正整数N用二进制表示并转换为一个String类型的值s
     public static String intToBinary(int N) {
         if(N == 0){
             return "0";

@@ -11,6 +11,7 @@ public class ex7 {
             t = (25.0 / t + t) / 2.0;
         }
         //5.00002
+        //牛顿法开平方
         StdOut.printf("%.5f\n", t);
         int sum = 0;
         for (int i = 1; i < 1000;i++){

@@ -11,6 +11,7 @@ public class ex6 {
             f = f + g;
             g = f - g;
         }
+        //斐波那契数列
         /*
         0
         1
