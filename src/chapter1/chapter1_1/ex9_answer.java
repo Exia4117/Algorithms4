@@ -3,11 +3,11 @@ package chapter1.chapter1_1;
 public class ex9_answer {
     //编写一段代码，将一个正整数N用二进制表示并转换为一个String类型的值s
     public static String toBinaryString(int N) {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (int n = N; n > 0; n /= 2) {
-            s = (n % 2) + s;
+            s.insert(0, (n % 2));
         }
-        return s;
+        return s.toString();
     }
 
     public static void main(String[] args) {
