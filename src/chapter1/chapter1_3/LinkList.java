@@ -54,7 +54,7 @@ public class LinkList {
 
         if (k != 2 || p == null || p.next == null) {
             throw new RuntimeException("The size less than k");
-        }else {
+        } else {
             p.next = p.next.next;
         }
 
@@ -62,15 +62,50 @@ public class LinkList {
     }
 
     //@1.3.21
-    public boolean find(String key){
+    public boolean find(String key) {
         Node p = first;
-        while(p != null){
-            if(p.item.equals(key)){
+        while (p != null) {
+            if (p.item.equals(key)) {
                 return true;
             }
             p = p.next;
         }
         return false;
+    }
+
+    //@1.3.24
+    public void removeAfter(Node node) {
+        if (node.next == null || node == null) {
+            return;
+        }
+        node.next = node.next.next;
+    }
+
+    //@1.3.25
+    public void insertAfter(Node node, Node insert) {
+        if (node == null || insert == null) {
+            return;
+        }
+        insert.next = node.next;
+        node.next = insert;
+    }
+
+    //@1.3.26
+    public void remove(String key) {
+        if(first == null){
+            return;
+        }
+        if (first.item.equals(key)) {
+            first = first.next;
+        }
+        Node p = first;
+        while (p.next != null) {
+            if (p.next.item.equals(key)) {
+                p.next=p.next.next;
+                continue;
+            }
+            p = p.next;
+        }
     }
 
     public void printAll() {
@@ -82,6 +117,26 @@ public class LinkList {
         System.out.println(" ");
     }
 
+    public Node findNodebyK(int k) {
+        if (k == 1) {
+            return this.first;
+        }
+        if (k < 1) {
+            throw new RuntimeException("illegal k");
+        }
+        Node p = first;
+        while (p != null && k > 1) {
+            p = p.next;
+            k--;
+        }
+        if (k != 1 || p == null) {
+            throw new RuntimeException("k is more than length of linkedlist");
+        } else {
+            return p;
+        }
+
+    }
+
     public static void main(String[] args) {
         LinkList test = new LinkList("1");
         test.add("2");
@@ -90,9 +145,9 @@ public class LinkList {
         test.printAll();
         test.deleteTail();
         test.add("5");
-        test.add("88");
-        test.add("101");
-        test.add("12345");
+        test.add("6");
+        test.add("7");
+        test.add("8");
         test.deleteTail();
         test.printAll();
         test.delete(5);
@@ -101,9 +156,32 @@ public class LinkList {
         test.printAll();
         test.delete(1);
         test.printAll();
-        System.out.println(test.find("123"));
+        test.add("9");
+        test.add("10");
+        test.add("11");
+        test.add("12");
+        test.add("13");
+
+        test.printAll();
+        System.out.println(test.findNodebyK(4).item);
+        System.out.println(test.find("8"));
         System.out.println(test.find("11"));
-        System.out.println(test.find("88"));
+        System.out.println(test.find("7"));
+        test.removeAfter(test.findNodebyK(7));
+        test.printAll();
+
+        test.insertAfter(test.findNodebyK(3), new LinkList("14").first);
+        test.printAll();
+
+        for (int i = 0; i < 5; i++) {
+            test.add("233");
+            test.add(Integer.toString(i));
+        }
+        test.printAll();
+
+        test.remove("233");
+        test.printAll();
+
 
     }
 }
