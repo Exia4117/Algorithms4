@@ -92,7 +92,7 @@ public class LinkList {
 
     //@1.3.26
     public void remove(String key) {
-        if(first == null){
+        if (first == null) {
             return;
         }
         if (first.item.equals(key)) {
@@ -101,11 +101,55 @@ public class LinkList {
         Node p = first;
         while (p.next != null) {
             if (p.next.item.equals(key)) {
-                p.next=p.next.next;
+                p.next = p.next.next;
                 continue;
             }
             p = p.next;
         }
+    }
+
+    //@1.3.27
+    public int max(Node head) {
+        int max = Integer.MIN_VALUE;
+        if (head == null) {
+            return 0;
+        }
+        Node p = head;
+        while (p != null) {
+            if(max < Integer.parseInt(p.item)){
+                max = Integer.parseInt(p.item);
+            }
+            p = p.next;
+        }
+
+        return max;
+    }
+
+    //@1.3.30
+    public Node Reverse(Node head){
+        Node next = head;
+        Node pre = null;
+        while(head != null){
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
+    public Node ReverseRecursive(Node head){
+        if(head == null){
+            return null;
+        }
+        if(head.next == null){
+            return head;
+        }
+        Node second = head.next;
+        Node rest = ReverseRecursive(second);
+        second.next = head;
+        head.next = null;
+        return rest;
     }
 
     public void printAll() {
@@ -181,7 +225,12 @@ public class LinkList {
 
         test.remove("233");
         test.printAll();
-
+        System.out.println(test.max(test.first));
+        System.out.println(test.max((test.findNodebyK(11))));
+        test.first = test.Reverse(test.first);
+        test.printAll();
+        test.first = test.ReverseRecursive(test.first);
+        test.printAll();
 
     }
 }
